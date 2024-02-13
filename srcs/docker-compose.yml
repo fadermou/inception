@@ -5,8 +5,10 @@ services:
   nginx:
     build: requirements/nginx/
     container_name: nginx
+    # depends_on:
+    #   - wordpress
     ports:
-    - "443:443"            
+      - "443:443"  
     restart: always
   mariadb:
     container_name: mariadb
@@ -16,6 +18,16 @@ services:
       - .env
     volumes:
       - /var/lib/mysql
+  wordpress:
+    build: requirements/wordpress/
+    container_name: wordpress
+  #   # depends_on:
+  #   #   - mariadb
+  #   restart: always
+    env_file:
+      - .env
+    volumes:
+      - /var/www/html
 
 volumes:
   mariadb:
@@ -23,10 +35,12 @@ volumes:
     driver: local
     driver_opts:
       type: none
-      device: /home/fadermou/data/nginx
+      device: /home/fadermou/data/mariadb
   nginx:
     name: nginx
     driver: local
     driver_opts:
       type: none
       device: /home/fadermou/data/nginx
+
+  #### -> networks are needed

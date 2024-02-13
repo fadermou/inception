@@ -1,7 +1,15 @@
-docker system prune -a :removes all data (containers volumes ...)
+docker system prune -a: removes all data (containers volumes ...)
 docker image ls -q : shows all the id
 docker image remove -f $(docker image ls -q) : removes them all by id
 docker-compose down --rmi local --remove-orphans : removes all what docker compose builded 
 dockerocker-compose up --build  
 docker system prune --volumes:   - all stopped containers- all networks not used by at least one container- all anonymous volumes not used by at least one container- all dangling images- all dangling build cache
+
+
+_________________________________:
+Question:
+_________________________________:
+-> if I gave docker-compose a volume path that doesn't exist what's gonna happen
 -> Why we don't use sudo in containers
+-> why we can't use sudo in a container 
+-> the localhost in nginx == 127.0.0.1 ?? 
