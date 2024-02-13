@@ -1,0 +1,32 @@
+
+version: "3"
+
+services:
+  nginx:
+    build: requirements/nginx/
+    container_name: nginx
+    ports:
+    - "443:443"            
+    restart: always
+  mariadb:
+    container_name: mariadb
+    build: requirements/mariadb/
+    restart: always
+    env_file:
+      - .env
+    volumes:
+      - /var/lib/mysql
+
+volumes:
+  mariadb:
+    name: mariadb
+    driver: local
+    driver_opts:
+      type: none
+      device: /home/fadermou/data/nginx
+  nginx:
+    name: nginx
+    driver: local
+    driver_opts:
+      type: none
+      device: /home/fadermou/data/nginx

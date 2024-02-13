@@ -1,0 +1,7 @@
+docker system prune -a :removes all data (containers volumes ...)
+docker image ls -q : shows all the id
+docker image remove -f $(docker image ls -q) : removes them all by id
+docker-compose down --rmi local --remove-orphans : removes all what docker compose builded 
+dockerocker-compose up --build  
+docker system prune --volumes:   - all stopped containers- all networks not used by at least one container- all anonymous volumes not used by at least one container- all dangling images- all dangling build cache
+-> Why we don't use sudo in containers
