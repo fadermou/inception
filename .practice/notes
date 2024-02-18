@@ -13,3 +13,4 @@ _________________________________:
 -> Why we don't use sudo in containers
 -> why we can't use sudo in a container 
 -> the localhost in nginx == 127.0.0.1 ?? 
+-> learn about WP-CLI more (--skip-email :The --skip-email flag prevents WP-CLI from sending an email to the administrator with the login details.)

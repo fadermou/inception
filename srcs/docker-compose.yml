@@ -7,23 +7,25 @@ volumes:
     driver: local
     driver_opts:
       type: none
-      device: /home/fadermou/data/mariadb
+      device: ~/Desktop/fadermou/data/mariadb
   nginx:
     name: nginx
     driver: local
     driver_opts:
       type: none
-      device: /home/fadermou/data/nginx
+      device: ~/Desktop/fadermou/data/nginx
   wordpress:
     name: wordpress
     driver: local
     driver_opts:
       type: none
-      device: /home/fadermou/data/wordpress
+      device: ~/Desktop/fadermou/data/wordpress
 
 networks:
   inception:
     name: inception
+    driver_opts:
+      type: bridge
 
 services:
   nginx:
@@ -34,6 +36,10 @@ services:
     ports:
       - "443:443"
     restart: always
+    volumes:
+      - ~/Desktop/fadermou/data/wordpress:/var/www/html
+    networks:
+      - inception
   mariadb:
     container_name: mariadb
     build: requirements/mariadb/
@@ -55,7 +61,7 @@ services:
     networks:
       - inception
     volumes:
-      - /var/www/html
+      - ~/Desktop/fadermou/data/wordpress:/var/www/html
 
 # networks:
 #   name:

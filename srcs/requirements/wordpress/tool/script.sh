@@ -1,8 +1,8 @@
 #!/bin/bash
 
 # create directory to use in nginx container later and also to setup the wordpress conf
-mkdir /var/www/
-mkdir /var/www/html
+# mkdir /var/www/
+# mkdir /var/www/html
 
 cd /var/www/html
 
@@ -29,11 +29,11 @@ mv /var/www/html/wp-config-sample.php /var/www/html/wp-config.php
 # change the those lines in wp-config.php file to connect with database
 
 #line 23
-sed -i -r "s/database_name_here/wordpress/1"   wp-config.php  #Odsd
-#line 26
-sed -i -r "s/username_here/fadermou/1"  wp-config.php
+sed -s -i -r "s/database_name_here/$db_name/1"   wp-config.php  #Odsd
+#line 26 
+sed -i -s  -r "s/username_here/$db_user/1"  wp-config.php
 #line 29
-sed -i -r "s/password_here/123/1"    wp-config.php
+sed -i -r "s/password_here/$db_pwd/1"    wp-config.php
 
 #line 32
 sed -i -r "s/localhost/mariadb/1"    wp-config.php  #(to connect with mariadb database)
@@ -42,7 +42,7 @@ sed -i -r "s/localhost/mariadb/1"    wp-config.php  #(to connect with mariadb da
 wp core install --url=$DOMAIN_NAME/ --title=$WP_TITLE --admin_user=$WP_ADMIN_USR --admin_password=$WP_ADMIN_PWD --admin_email=$WP_ADMIN_EMAIL --skip-email --allow-root
 
 # creates a new user account with the specified username, email address, and password. The --role option sets the user's role to author, which gives the user the ability to publish and manage their own posts.
-wp user create $WP_USR $WP_EMAIL --role=author --user_pass=$WP_PWD --allow-root
+# wp user create $WP_USR $WP_EMAIL --role=author --dbhost=mariadb:3306 --path='/var/www/wordpress' --user_pass=$WP_PWD --allow-root
 
 # installs the Astra theme and activates it for the site. The --activate flag tells WP-CLI to make the theme the active theme for the site.
 wp theme install astra --activate --allow-root
@@ -60,6 +60,6 @@ mkdir /run/php
 
 # wp redis enable --allow-root
 
-
+php-fpm7.4 -F 
 # # starts the PHP-FPM service in the foreground. The -F flag tells PHP-FPM to run in the foreground, rather than as a daemon in the background.
 # /usr/sbin/php-fpm7.4 -F
