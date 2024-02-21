@@ -1,10 +1,11 @@
+
 service mariadb start;
 
 mysql -u root  << EOF 
-CREATE DATABASE IF NOT EXISTS wordpress;
-CREATE USER IF NOT EXISTS fadermou@'localhost' IDENTIFIED BY '123';
-GRANT ALL PRIVILEGES ON wordpress.* TO fadermou@'%' IDENTIFIED BY '123';
-ALTER USER 'root'@'localhost' IDENTIFIED BY '1234';
+CREATE DATABASE IF NOT EXISTS $db_name;
+CREATE USER IF NOT EXISTS $db_user@'localhost' IDENTIFIED BY '$db_pwd';
+GRANT ALL PRIVILEGES ON $db_name.* TO $db_user@'%' IDENTIFIED BY '$db_pwd';
+ALTER USER 'root'@'localhost' IDENTIFIED BY '$db_root_pwd';
 FLUSH PRIVILEGES;
 EOF
 

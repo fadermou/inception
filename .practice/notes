@@ -4,7 +4,7 @@ docker image remove -f $(docker image ls -q) : removes them all by id
 docker-compose down --rmi local --remove-orphans : removes all what docker compose builded 
 dockerocker-compose up --build  
 docker system prune --volumes:   - all stopped containers- all networks not used by at least one container- all anonymous volumes not used by at least one container- all dangling images- all dangling build cache
-
+--skip-email :The --skip-email flag prevents WP-CLI from sending an email to the administrator with the login details.
 
 _________________________________:
 Question:
@@ -13,4 +13,6 @@ _________________________________:
 -> Why we don't use sudo in containers
 -> why we can't use sudo in a container 
 -> the localhost in nginx == 127.0.0.1 ?? 
--> learn about WP-CLI more (--skip-email :The --skip-email flag prevents WP-CLI from sending an email to the administrator with the login details.)
+-> learn about WP-CLI more 
+-> bind address in mariadb?
+-> GRANT ALL PRIVILEGES ON $db_name.* TO $db_user@'%' IDENTIFIED BY '$db_pwd';: This command grants all privileges on the database specified by the variable $db_name to the user specified by the variable $db_user from any host (%), identified by the password stored in the variable $db_pwd. <-

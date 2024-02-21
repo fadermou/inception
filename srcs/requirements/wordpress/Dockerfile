@@ -5,8 +5,5 @@ RUN apt update -y && apt upgrade -y && apt-get install -y php7.4\
 						php-mysql\
 						mariadb-client
 COPY tool/script.sh .
-# RUN bash ./script.sh
-# CMD [ "tail", "-f" , "/dev/null"]
 CMD ["bash", "./script.sh"]
-# CMD [ "php-fpm", "-F" ]
  
