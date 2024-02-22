@@ -20,7 +20,12 @@ volumes:
     driver_opts:
       type: none
       device: ~/Desktop/fadermou/data/wordpress
-
+  portainer:
+    name: portainer
+    driver: local
+    driver_opts:
+      type: none
+      device: ~/Desktop/fadermou/data/portainer ####change this path later
 networks:
   inception:
     name: inception
@@ -62,6 +67,17 @@ services:
       - inception
     volumes:
       - ~/Desktop/fadermou/data/wordpress:/var/www/html
+  portainer:
+    container_name: portainer
+    build: bonus/portainer/
+    restart: always
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock ####
+    ports:
+      - 9000:9000
+    networks:
+      - inception
+
 
 # networks:
 #   name:
