@@ -6,6 +6,11 @@ dockerocker-compose up --build
 docker system prune --volumes:   - all stopped containers- all networks not used by at least one container- all anonymous volumes not used by at least one container- all dangling images- all dangling build cache
 --skip-email :The --skip-email flag prevents WP-CLI from sending an email to the administrator with the login details.
 
+
+NOTE : 
+>CHECK THE ###
+>>CHANGE PATH AND EDIT THE LOCALHOST(/etc/.)
+
 _________________________________:
 Question:
 _________________________________:

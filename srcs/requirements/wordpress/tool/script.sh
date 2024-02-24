@@ -18,7 +18,7 @@ wp core install --url=$DOMAIN_NAME \
                 --admin_email=$WP_ADMIN_EMAIL \
                 --allow-root
 # wp user create editor 
-wp user create editor --role=editor --user_pass=123
+wp user create editor --role=editor --user_pass=123 ####it's not working
 
 wp theme install astra --activate --allow-root
 # sed -i 's/\/run\/php\/php7.4-fpm.sock/9000/g' /etc/php/7.4/fpm/pool.d/www.conf

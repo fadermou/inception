@@ -25,7 +25,14 @@ volumes:
     driver: local
     driver_opts:
       type: none
-      device: ~/Desktop/fadermou/data/portainer ####change this path later
+      device: ~/Desktop/fadermou/data/portainer ####change this path later *
+  portfolio:
+    name: portfolio
+    driver: local
+    driver_opts:
+      type: none
+      device: ~/Desktop/fadermou/data/portfolio
+
 networks:
   inception:
     name: inception
@@ -75,6 +82,16 @@ services:
       - /var/run/docker.sock:/var/run/docker.sock ####
     ports:
       - 9000:9000
+    networks:
+      - inception
+  portfolio:
+    container_name: portfolio
+    build: bonus/portfolio/
+    restart: always
+    volumes:
+      - ~/Desktop/fadermou/data/portfolio:/var/www/html ####change the first path later *
+    ports:
+      - 8080:8080 ####what's difference between each one 
     networks:
       - inception
 
