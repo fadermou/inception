@@ -4,13 +4,8 @@
 server {
 	listen 443 ssl default_server;
 	listen [::]:443 ssl default_server;
-	#listen 443 ssl;
-	
-	
-	#ssl on;
 
-
-	# SSL configuration
+	
     ssl_certificate     /etc/ssl/certs/nginx-selfsigned.crt;
     ssl_certificate_key /etc/ssl/private/nginx-selfsigned.key;
     ssl_protocols        TLSv1.2 TLSv1.3;
@@ -18,7 +13,6 @@ server {
 	
 	root /var/www/html;
 
-	# Add index.php to the list if you are using PHP
 	index index.php;
 
 	server_name _;
@@ -29,8 +23,6 @@ server {
 		try_files $uri $uri/ =404;
 	}
 
-	# pass PHP scripts to FastCGI server
-	#
 	location ~ \.php$ {
 		include snippets/fastcgi-php.conf; ####more
 		fastcgi_pass wordpress:9000;

@@ -7,31 +7,31 @@ volumes:
     driver: local
     driver_opts:
       type: none
-      device: ~/Desktop/fadermou/data/mariadb
+      device: /home/fadermou/data/mariadb
   nginx:
     name: nginx
     driver: local
     driver_opts:
       type: none
-      device: ~/Desktop/fadermou/data/nginx
+      device: /home/fadermou/data/nginx
   wordpress:
     name: wordpress
     driver: local
     driver_opts:
       type: none
-      device: ~/Desktop/fadermou/data/wordpress
+      device: /home/fadermou/data/wordpress
   portainer:
     name: portainer
     driver: local
     driver_opts:
       type: none
-      device: ~/Desktop/fadermou/data/portainer ####change this path later *
+      device: /home/fadermou/data/portainer ####change this path later *
   portfolio:
     name: portfolio
     driver: local
     driver_opts:
       type: none
-      device: ~/Desktop/fadermou/data/portfolio
+      device: /home/fadermou/data/portfolio
 
 networks:
   inception:
@@ -49,7 +49,7 @@ services:
       - "443:443"
     restart: always
     volumes:
-      - ~/Desktop/fadermou/data/wordpress:/var/www/html
+      - wordpress:/var/www/html
     networks:
       - inception
   mariadb:
@@ -73,7 +73,7 @@ services:
     networks:
       - inception
     volumes:
-      - ~/Desktop/fadermou/data/wordpress:/var/www/html
+      - wordpress:/var/www/html
   portainer:
     container_name: portainer
     build: bonus/portainer/
@@ -89,7 +89,7 @@ services:
     build: bonus/portfolio/
     restart: always
     volumes:
-      - ~/Desktop/fadermou/data/portfolio:/var/www/html ####change the first path later *
+      - /home/fadermou/data/portfolio:/var/www/html ####change the first path later *
     ports:
       - 8080:8080 ####what's difference between each one 
     networks:
