@@ -1,37 +1,6 @@
 
-version: "3"
+version: "3.8"
 
-volumes:
-  mariadb:
-    name: mariadb
-    driver: local
-    driver_opts:
-      type: none
-      device: /home/fadermou/data/mariadb
-  nginx:
-    name: nginx
-    driver: local
-    driver_opts:
-      type: none
-      device: /home/fadermou/data/nginx
-  wordpress:
-    name: wordpress
-    driver: local
-    driver_opts:
-      type: none
-      device: /home/fadermou/data/wordpress
-  portainer:
-    name: portainer
-    driver: local
-    driver_opts:
-      type: none
-      device: /home/fadermou/data/portainer ####change this path later *
-  portfolio:
-    name: portfolio
-    driver: local
-    driver_opts:
-      type: none
-      device: /home/fadermou/data/portfolio
 
 networks:
   inception:
@@ -89,12 +58,45 @@ services:
     build: bonus/portfolio/
     restart: always
     volumes:
-      - /home/fadermou/data/portfolio:/var/www/html ####change the first path later *
+      - portfolio:/var/www/html ####change the first path later *
     ports:
       - 8080:8080 ####what's difference between each one 
     networks:
       - inception
 
+volumes:
+  mariadb:
+    name: mariadb
+    driver: local
+    driver_opts:
+      type: none
+      device: /home/fadermou/data/mariadb
+  # nginx:
+  #   name: nginx
+  #   driver: local
+  #   driver_opts:
+  #     type: none
+  #     device: /home/fadermou/data/nginx
+  wordpress:
+    name: wordpress
+    driver: local
+    driver_opts:
+      type: none
+      device: /home/fadermou/data/wordpress
+      o: bind
+  # portainer:
+  #   name: portainer
+  #   driver: local
+  #   driver_opts:
+  #     type: none
+  #     device: /home/fadermou/data/portainer ####change this path later *
+  portfolio:
+    name: portfolio
+    driver: local
+    driver_opts:
+      type: none
+      device: /home/fadermou/data/portfolio
+      o: bind
 
 # networks:
 #   name:
