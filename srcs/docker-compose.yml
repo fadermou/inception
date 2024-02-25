@@ -48,7 +48,7 @@ services:
     build: bonus/portainer/
     restart: always
     volumes:
-      - /var/run/docker.sock:/var/run/docker.sock ####
+      - portainer:/var/run/docker.sock ####
     ports:
       - 9000:9000
     networks:
@@ -84,12 +84,13 @@ volumes:
       type: none
       device: /home/fadermou/data/wordpress
       o: bind
-  # portainer:
-  #   name: portainer
-  #   driver: local
-  #   driver_opts:
-  #     type: none
-  #     device: /home/fadermou/data/portainer ####change this path later *
+  portainer:
+    name: portainer
+    driver: local
+    driver_opts:
+      type: none
+      o: bind
+      device: /home/fadermou/data/portainer ####change this path later *
   portfolio:
     name: portfolio
     driver: local
