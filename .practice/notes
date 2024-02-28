@@ -10,7 +10,8 @@ docker system prune --volumes:   - all stopped containers- all networks not used
 NOTE : 
 >CHECK THE ###
 >>CHANGE PATH AND EDIT THE LOCALHOST(/etc/.)
-
+>>>.dockerignore
+>>>>how to add a comment
 _________________________________:
 Question:
 _________________________________:
@@ -21,3 +22,6 @@ _________________________________:
 -> learn about WP-CLI more 
 -> bind address in mariadb?
 -> GRANT ALL PRIVILEGES ON $db_name.* TO $db_user@'%' IDENTIFIED BY '$db_pwd';: This command grants all privileges on the database specified by the variable $db_name to the user specified by the variable $db_user from any host (%), identified by the password stored in the variable $db_pwd. <-
+
+
+

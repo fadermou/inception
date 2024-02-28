@@ -23,11 +23,17 @@ services:
       - inception
   mariadb:
     container_name: mariadb
-    build: requirements/mariadb/
     env_file:
       - .env
+    build:
+     context: requirements/mariadb/
+     args:
+       db_name: ${db_name}
+       db_user: ${db_user}
+       db_pwd: ${db_pwd}
+       db_root_pwd: ${db_root_pwd}
     volumes:
-      - /var/lib/mysql
+      - mariadb:/var/lib/mysql
     networks:
       - inception
     restart: always
@@ -45,22 +51,20 @@ services:
       - wordpress:/var/www/html
   portainer:
     container_name: portainer
-    build: bonus/portainer/
+    build: requirements/bonus/portainer/
     restart: always
     volumes:
-      - portainer:/var/run/docker.sock ####
+      - wordpress:/var/run/docker.sock ####
     ports:
       - 9000:9000
     networks:
       - inception
   portfolio:
     container_name: portfolio
-    build: bonus/portfolio/
+    build: requirements/bonus/portfolio/
     restart: always
-    volumes:
-      - portfolio:/var/www/html ####change the first path later *
     ports:
-      - 8080:8080 ####what's difference between each one 
+      - 8080:8080 
     networks:
       - inception
 
@@ -71,12 +75,7 @@ volumes:
     driver_opts:
       type: none
       device: /home/fadermou/data/mariadb
-  # nginx:
-  #   name: nginx
-  #   driver: local
-  #   driver_opts:
-  #     type: none
-  #     device: /home/fadermou/data/nginx
+      o: bind
   wordpress:
     name: wordpress
     driver: local
@@ -84,24 +83,3 @@ volumes:
       type: none
       device: /home/fadermou/data/wordpress
       o: bind
-  portainer:
-    name: portainer
-    driver: local
-    driver_opts:
-      type: none
-      o: bind
-      device: /home/fadermou/data/portainer ####change this path later *
-  portfolio:
-    name: portfolio
-    driver: local
-    driver_opts:
-      type: none
-      device: /home/fadermou/data/portfolio
-      o: bind
-
-# networks:
-#   name:
-#     inception
-
-
-  #### -> networks are needed

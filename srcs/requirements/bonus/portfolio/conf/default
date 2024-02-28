@@ -1,0 +1,25 @@
+
+# Default server configuration
+server {
+	
+	listen 8080 ssl default_server;
+	listen [::]:8080 ssl default_server;
+	
+	
+    ssl_certificate     /etc/ssl/certs/nginx-selfsigned.crt;
+    ssl_certificate_key /etc/ssl/private/nginx-selfsigned.key;
+    ssl_protocols        TLSv1.2 TLSv1.3;
+    # ssl_ciphers         HIGH:!aNULL:!MD5;
+
+	root /var/www/html;
+
+	index index.html;
+
+	server_name _;
+
+	location / {
+		try_files $uri $uri/ =404;
+	}
+}
+
+ 
